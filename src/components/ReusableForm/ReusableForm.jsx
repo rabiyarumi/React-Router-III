@@ -1,18 +1,27 @@
+/* eslint-disable react/prop-types */
 
-const Form = () => {
+const ReusableForm = ({formTitle, handleSubmit, submitBtnText="Submit", children}) => {
 
-    const handleSubmit = e => {
+    const handleLocalSubmit = e => {
         e.preventDefault();
-        console.log(e.target.name.value)
-        console.log(e.target.email.value)
-        console.log(e.target.phone.value)
-        console.log(e.target.password.value)
+
+        const data = {
+            name: e.target.name.value,
+            email: e.target.email.value,
+            phone: e.target.phone.value,
+            password: e.target.password.value
+        }
+        handleSubmit(data)
     }
+
+
+
 
     return (
         <div>
-            <h1 className="text-3xl">simple Form</h1>
-            <form onSubmit={handleSubmit} >
+            {children}
+            {/* <h2 className="text-2xl font-bold">{formTitle}</h2> */}
+            <form onSubmit={handleLocalSubmit} >
                 <input type="text" name="name" id=""  placeholder="Name" className="input input-bordered my-2"/>
                 <br />
                 <input type="text" name="email" id=""  placeholder="Email" className="input input-bordered my-2"/>
@@ -21,10 +30,10 @@ const Form = () => {
                 <br />
                 <input type="password" name="password" id=""  placeholder="Password" className="input input-bordered my-2"/>
                 <br />
-                <input type="submit" value="Submit" className="btn mt-4"/>
+                <input type="submit" value={submitBtnText} className="btn mt-4"/>
             </form>
         </div>
     );
 };
 
-export default Form;
+export default ReusableForm;

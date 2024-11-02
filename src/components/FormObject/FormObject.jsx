@@ -1,19 +1,17 @@
+import useInputObject from "../../Hooks/useInputObject";
 
-const Form = () => {
+const FormObject = () => {
+
+    const nameState = useInputObject('')
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(e.target.name.value)
-        console.log(e.target.email.value)
-        console.log(e.target.phone.value)
-        console.log(e.target.password.value)
+        console.log(nameState.value)
     }
-
     return (
         <div>
-            <h1 className="text-3xl">simple Form</h1>
             <form onSubmit={handleSubmit} >
-                <input type="text" name="name" id=""  placeholder="Name" className="input input-bordered my-2"/>
+                <input {...nameState} type="text"  name="name" id=""  placeholder="Name" className="input input-bordered my-2"/>
                 <br />
                 <input type="text" name="email" id=""  placeholder="Email" className="input input-bordered my-2"/>
                 <br />
@@ -27,4 +25,4 @@ const Form = () => {
     );
 };
 
-export default Form;
+export default FormObject;
